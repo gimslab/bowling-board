@@ -6,6 +6,7 @@ public class Main {
 
 		Board board = new Board();
 		board.addUser("AAA");
+		board.addUser("BBB");
 		
 		GameController controller = new InteractiveGameController(board);
 		controller.startGame();

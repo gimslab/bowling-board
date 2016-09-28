@@ -14,8 +14,11 @@ public class InteractiveGameController implements GameController {
 
 	@Override
 	public void startGame() {
+
+		board.open();
+
 		while (board.availNextShot()) {
-			Input input = prompt(board.getCurrentUser() + "! your shot result [(0..9) / (s)trike / (f)oul / (g)utter / (q)uit ] = ?");
+			Input input = prompt(board.getUserToShot() + "! your shot result [(0..9) / (s)trike / (f)oul / (g)utter / (q)uit ] = ?");
 			System.out.println("your input : " + input);
 			if (input.hasError()) {
 				System.out.println("your input has error !!!");
