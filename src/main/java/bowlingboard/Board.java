@@ -43,13 +43,19 @@ public class Board {
 		return nowPlayingUser;
 	}
 
-	public void addShot(Input input) {
-		// TODO Auto-generated method stub
-
+	public void addShot(int score) {
+		nowPlayingUser.addShot(score);
+		if (nowPlayingUser.frameFinished()) {
+			nowPlayingUser = nowPlayingUser.getNextUser();
+		}
 	}
 
-	public String getTextBoard() {
-		return "BBBBBBBBBBBBBBBBBBBBBBB";
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (UserGame user : userGames)
+			sb.append(user.toString()).append("\n");
+		return sb.toString();
 	}
 
 	public int getUserCount() {

@@ -18,8 +18,10 @@ public class InteractiveGameController implements GameController {
 		board.open();
 
 		while (board.availNextShot()) {
-			Input input = prompt(board.getUserToShot() + "! your shot result [(0..9) / (s)trike / (f)oul / (g)utter / (q)uit ] = ?");
+
+			Input input = prompt("--------\n" + board.getUserToShot().getName() + "! input score [(0..9) / (s)trike / (f)oul / (g)utter / (q)uit ] = ?");
 			System.out.println("your input : " + input);
+
 			if (input.hasError()) {
 				System.out.println("your input has error !!!");
 				continue;
@@ -28,13 +30,15 @@ public class InteractiveGameController implements GameController {
 				System.out.println("quit");
 				break;
 			}
-			board.addShot(input);
-			System.out.println(board.getTextBoard());
+
+			board.addShot(input.getScore());
+
+			System.out.println(board.toString());
 		}
 	}
 
 	private Input prompt(String msg) {
-		System.out.println(msg);
+		System.out.print(msg);
 		try {
 			return new Input(s.next());
 		} catch (IllegalArgumentException e) {

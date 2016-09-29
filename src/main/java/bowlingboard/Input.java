@@ -46,4 +46,8 @@ public class Input {
 	public boolean isQuit() {
 		return QUIT.equals(mark);
 	}
+
+	public int getScore() {
+		return score;
+	}
 }
