@@ -13,4 +13,9 @@ public class StrikeShot implements Shot {
 	public int getScore() {
 		return ALL_PIN;
 	}
+
+	@Override
+	public String toString() {
+		return "X";
+	}
 }

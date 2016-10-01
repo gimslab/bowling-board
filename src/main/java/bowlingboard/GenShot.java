@@ -20,6 +20,6 @@ public class GenShot implements Shot {
 
 	@Override
 	public String toString() {
-		return "Shot(" + score + ")";
+		return score + "";
 	}
 }

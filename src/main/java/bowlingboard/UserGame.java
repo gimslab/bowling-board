@@ -22,10 +22,10 @@ public class UserGame {
 
 	private void initFrames() {
 		frames = new ArrayList<>();
-		Frame prev = new GenericFrame();
+		Frame prev = new GenericFrame(null);
 		frames.add(prev);
 		for (int i = 1; i < FRAME_SIZE; i++) {
-			Frame newFrame = new GenericFrame();
+			Frame newFrame = new GenericFrame(prev);
 			frames.add(newFrame);
 			prev.setNextFrame(newFrame);
 			prev = newFrame;
@@ -73,10 +73,11 @@ public class UserGame {
 
 	@Override
 	public String toString() {
-		return "userName = " + userName
-			+ "\nnextUser = " + nextUser.getName()
-			+ "\ncurrentFrame = " + (currentFrame != null ? currentFrame.toString() : currentFrame)
-			+ "\nfinished = " + finished;
+		StringBuilder sb = new StringBuilder();
+		sb.append(userName).append(" : ");
+		for (Frame f : frames)
+			sb.append(f.toString());
+		return sb.toString();
 	}
 
 }

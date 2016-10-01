@@ -19,7 +19,7 @@ public class InteractiveGameController implements GameController {
 
 		while (board.availNextShot()) {
 
-			Input input = prompt("--------\n" + board.getUserToShot().getName() + "! input score [(0..9) / (s)trike / (f)oul / (g)utter / (q)uit ] = ?");
+			Input input = prompt("--------\n" + board.getUserToShot().getName() + "! input score [(0..9) / (x)10 / (f)oul / (g)utter / (q)uit ] = ?");
 			System.out.println("your input : " + input);
 
 			if (input.hasError()) {
@@ -42,7 +42,7 @@ public class InteractiveGameController implements GameController {
 		try {
 			return new Input(s.next());
 		} catch (IllegalArgumentException e) {
-			System.out.println(e);
+			System.out.println(e.getMessage());
 			return Input.withError();
 		}
 	}

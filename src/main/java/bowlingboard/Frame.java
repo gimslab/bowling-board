@@ -9,4 +9,6 @@ public interface Frame {
 	boolean isClosed();
 
 	Frame nextFrame();
+
+	int calcScore();
 }

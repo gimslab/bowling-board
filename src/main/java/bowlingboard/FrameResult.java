@@ -1,5 +1,19 @@
 package bowlingboard;
 
 public enum FrameResult {
-	STRIKE,SPAIR,OPENED
+
+	NOT_STARTED(0),
+	STRIKE(2),
+	SPAIR(1),
+	OPENED(0);
+
+	private int extraShotCountToScore;
+
+	private FrameResult(int extraShotCountToScore) {
+		this.extraShotCountToScore = extraShotCountToScore;
+	}
+
+	public int getExtraShotCountToScore() {
+		return extraShotCountToScore;
+	}
 }

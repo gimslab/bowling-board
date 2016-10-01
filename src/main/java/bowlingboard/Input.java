@@ -4,11 +4,11 @@ public class Input {
 
 	private static final String QUIT = "Q";
 	private static final String ERROR = "E";
-	private static final String STRIKE = "S";
 	private static final String FOUL = "F";
 	private static final String GUTTER = "G";
 	private static final String ZERO_MARKS = FOUL + GUTTER + ERROR + QUIT;
-	private static final String AVAIL = "01234567890" + STRIKE + ZERO_MARKS;
+	private static final String TEN = "X";
+	private static final String AVAIL = "01234567890" + TEN + ZERO_MARKS;
 
 	private String mark = null;
 	private int score = 0;
@@ -22,10 +22,10 @@ public class Input {
 			throw new IllegalArgumentException("not available chars - " + s + " / available chars are : " + AVAIL);
 		}
 		this.mark = s;
-		if (STRIKE.equals(mark))
-			this.score = 10;
-		else if (ZERO_MARKS.indexOf(mark) > -1)
+		if (ZERO_MARKS.indexOf(mark) > -1)
 			this.score = 0;
+		else if (TEN.equals(mark))
+			this.score = 10;
 		else
 			this.score = Integer.parseInt(mark);
 	}
