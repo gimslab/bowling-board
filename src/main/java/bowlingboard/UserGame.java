@@ -12,24 +12,31 @@ public class UserGame {
 
 	private List<Frame> frames;
 	private Frame currentFrame;
-	private boolean finished;
+	private boolean turnFinished;
 
 	public UserGame(String userName) {
 		this.userName = userName;
 		initFrames();
-		this.finished = false;
+		this.turnFinished = false;
 	}
 
 	private void initFrames() {
 		frames = new ArrayList<>();
 		Frame prev = new GenericFrame(null);
 		frames.add(prev);
-		for (int i = 1; i < FRAME_SIZE; i++) {
+		for (int i = 1; i < FRAME_SIZE - 1; i++) {
 			Frame newFrame = new GenericFrame(prev);
 			frames.add(newFrame);
 			prev.setNextFrame(newFrame);
 			prev = newFrame;
 		}
+
+		LastFrame newFrame = new LastFrame(prev);
+		frames.add(newFrame);
+		prev.setNextFrame(newFrame);
+		prev = newFrame;
+
+		currentFrame = frames.get(0);
 	}
 
 	public String getName() {
@@ -56,19 +63,16 @@ public class UserGame {
 	}
 
 	public void addShot(int score) {
-		if (currentFrame == null) {
-			currentFrame = frames.get(0);
-		}
-		finished = false;
+		turnFinished = false;
 		currentFrame.addShot(score);
 		if (currentFrame.isClosed()) {
 			currentFrame = currentFrame.nextFrame();
-			finished = true;
+			turnFinished = true;
 		}
 	}
 
 	public boolean frameFinished() {
-		return finished;
+		return turnFinished;
 	}
 
 	@Override
@@ -80,4 +84,11 @@ public class UserGame {
 		return sb.toString();
 	}
 
+	public int getStadingPins() {
+		return currentFrame.getStadingPins();
+	}
+
+	public boolean hasAvailShot() {
+		return currentFrame != null;
+	}
 }

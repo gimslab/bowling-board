@@ -32,11 +32,7 @@ public class Board {
 	}
 
 	public boolean availNextShot() {
-		if (nowPlayingUser == null) {
-			return false;
-		}
-		// TODO Auto-generated method stub
-		return true;
+		return nowPlayingUser != null && nowPlayingUser.hasAvailShot();
 	}
 
 	public UserGame getUserToShot() {
@@ -60,5 +56,9 @@ public class Board {
 
 	public int getUserCount() {
 		return userGames.size();
+	}
+
+	public int getStadingPins() {
+		return nowPlayingUser.getStadingPins();
 	}
 }
